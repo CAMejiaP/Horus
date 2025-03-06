@@ -1,0 +1,29 @@
+{
+  "name": "horus",
+  "version": "1.0.0",
+  "description": "Traductor Braille-Español y viceversa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CAMejiaP/Horus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CAMejiaP/Horus/issues"
+  },
+  "homepage": "https://github.com/CAMejiaP/Horus#readme",
+  "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.2.3",
+    "@tensorflow-models/mobilenet": "^2.1.1",
+    "@tensorflow/tfjs": "^4.22.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "tesseract.js": "^6.0.0"
+  }
+}
