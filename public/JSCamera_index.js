@@ -1,73 +1,102 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const video = document.getElementById('camera');
-    const captureButton = document.getElementById('capture');
-    const processButton = document.getElementById('processImage');
-    const previewImage = document.getElementById('preview');
-    const output = document.getElementById('output');
+    const video = document.getElementById('cameraView');
+    const captureButton = document.getElementById('camera');
+    const fileInput = document.getElementById('fileInput');
+    const translateButton = document.getElementById('atraducir');
+    const outputField = document.querySelector('#atraducir');
+    const displayDiv = document.getElementById('Id_fileDisplay');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
 
     async function startCamera() {
         try {
             const constraints = {
-                video: {
-                    width: { ideal: 1280 },
-                    height: { ideal: 720 },
-                    facingMode: "environment"
-                }
+                video: { facingMode: 'environment' }
             };
-
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
             video.srcObject = stream;
-            await video.play();
         } catch (error) {
-            console.error("Error al acceder a la cámara:", error);
-            alert("No se pudo acceder a la cámara. Verifica los permisos.");
+            console.error('Error al acceder a la cámara:', error);
+            alert('No se pudo acceder a la cámara. Verifica los permisos.');
         }
     }
 
-    let capturedImageURL = "";
-
     captureButton.addEventListener('click', async () => {
-        previewImage.src = "";
-        previewImage.style.display = 'none';
-
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-
+        if (!video.srcObject) {
+            await startCamera();
+        }
+        
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        const imgData = canvas.toDataURL('image/png');
+        const img = document.createElement('img');
+        img.src = imgData;
+        displayDiv.innerHTML = '';
+        displayDiv.appendChild(img);
 
-        capturedImageURL = canvas.toDataURL("image/png"); // Guardamos la imagen en una variable
-        previewImage.src = capturedImageURL;
-        previewImage.style.display = 'block';
+        // Detener la cámara
+        stopCamera();
     });
 
-    processButton.addEventListener('click', async () => {
-        if (!capturedImageURL) {
-            alert("Primero toma una foto.");
-            return;
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                displayDiv.innerHTML = '';
+                displayDiv.appendChild(img);
+                stopCamera();
+            };
+            reader.readAsDataURL(file);
         }
+    });
 
-        // Convertir la imagen a un formato Blob para enviarla al servidor
-        const blob = await fetch(capturedImageURL).then(res => res.blob());
-        const formData = new FormData();
-        formData.append("image", blob, "captured.png");
+    translateButton.addEventListener('click', async () => {
+        const imgElement = document.querySelector('#Id_fileDisplay img');
+        if (imgElement) {
+            await sendToServer(imgElement.src);
+        } else {
+            alert('No hay imagen para procesar.');
+        }
+    });
 
+    async function sendToServer(imageData) {
         try {
-            const response = await fetch("http://127.0.0.1:5000/upload", {
-                method: "POST",
+            const blob = await fetch(imageData).then(res => res.blob());
+            const formData = new FormData();
+            formData.append('image', blob, 'captured.png');
+            
+            const response = await fetch('http://127.0.0.1:5000/upload', {
+                method: 'POST',
                 body: formData
             });
 
-            if (!response.ok) throw new Error("Error en la respuesta del servidor");
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
 
             const data = await response.json();
-            output.innerText = "Texto detectado: " + (data.text || "No se detectó texto.");
+            outputField.value = data.text || 'No se detectó texto.';
+            
+            // Reiniciar la cámara después de procesar la imagen
+            startCamera();
         } catch (error) {
-            console.error("Error procesando la imagen:", error);
-            output.innerText = "Error procesando la imagen.";
+            console.error('Error procesando la imagen:', error);
+            outputField.value = 'Error procesando la imagen.';
+            startCamera();
         }
-    });
+    }
+
+    function stopCamera() {
+        const stream = video.srcObject;
+        if (stream) {
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            video.srcObject = null;
+        }
+    }
 
     startCamera();
 });

@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braille Vision</title>
-    <link rel="stylesheet" href="\src\styles\Sindex.css">
+    <title>Página en Español con Braille</title>
+    <link rel="stylesheet" href="/src/styles/styles.css">
 </head>
 <body>
+    <div class="container">
+        <div class="LogoHeader">
+            <img class="horuslogo" src="/src/icons/HORUSLogo.png">
+            <b class="horusText">HORUS</b>
+        </div>
+        <div class="buttonRow">
+            <button class="button">Español</button>
+            <button class="button">⇔</button>
+            <button class="button">Braile</button>
+            <img class="buttonImage" src="/src/icons/voice.png">
+        </div>
+        
+        <div class="fieldContainer">
+            <textarea class="textfield left-div" id="atraducir"></textarea>
+            <textarea class="textfield" readonly></textarea>
+        </div>
+        
+        <div class="buttonRow">
+            <button class="button" id="atraducir">Traducir</button>
+            <button class="button">Descargar</button>
+            <button class="button">Descargar (inverso)</button>
+        </div>
+        
+        <div class="bigbuttonRow">
+            <img class="bigbuttonImage" src="/src/icons/folder.png" id="folder">
+            <img class="bigbuttonImage" src="/src/icons/image.png" id="camera">
+            <img class="bigbuttonImage" src="/src/icons/more.png">
+        </div>
+        
+        <div class="fileDisplay" id="Id_fileDisplay">
+            <video id="cameraView" autoplay playsinline></video>
+        </div>
+    </div>
 
-    <h1>Escaneo de Braille y Texto</h1>
-
-    <video id="camera" autoplay playsinline></video>
     <canvas id="canvas" style="display: none;"></canvas>
+    <!-- Input oculto para seleccionar imágenes -->
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
 
-    <br>
-    <button id="capture" class="btn">Tomar Foto</button>
-    <button id="processImage" class="btn">Procesar Imagen</button>
-
-    <br>
-    <!-- Aquí solo dejamos una imagen para el preview -->
-    <img id="preview" alt="Imagen Capturada">
-
-    <div id="output"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    <script src="https://unpkg.com/tesseract.js@2.1.0"></script>
-    <script type="module" src="JSCamera_index.js"></script>
+    <script src="JSCamera_index.js"></script>
 
 </body>
 </html>

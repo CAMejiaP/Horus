@@ -5,7 +5,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -14,13 +15,9 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    width: 100%;
-    max-height: fit-content;
-    max-width: fit-content;
-    min-width: 500px;
-    min-height: 700px;
-    
+    width: 90%; /* Ancho relativo */
+    max-width: 800px; /* Ancho máximo para pantallas grandes */
+    margin: 20px auto; /* Centrar el contenedor */
 }
 
 .buttonRow {
@@ -30,18 +27,16 @@ body {
     background-color: #76abae;
     padding: 5px;
     border-radius: 20px;
-    height: 7%;
+    height: auto; /* Altura automática */
+    margin-bottom: 10px; /* Espaciado entre filas */
 }
 
-.fieldContainer
- {
+.fieldContainer {
     display: flex;
-    height: 32%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 98%;
-    padding-left: 1%;
-    
+    flex-direction: row; /* Mantener los textfield uno al lado del otro */
+    height: auto; /* Altura automática */
+    padding: 5px 0;
+    width: 100%;
 }
 
 .LogoHeader {
@@ -50,66 +45,57 @@ body {
     align-items: center;
     padding: 5px;
     border-radius: 8px;
-    height: 10%;
-    padding-bottom: 10px;
+    height: auto; /* Altura automática */
+    margin-bottom: 10px; /* Espaciado */
 }
 
 .horuslogo {
-    width: 104px;
-    height: 86px;
-    padding-right: 55px;
+    width: 80px; /* Tamaño base para móviles */
+    height: auto; /* Mantener proporción */
+    padding-right: 20px; /* Reducir espaciado */
 }
 
 .horusText {
     color: white;
-    font-size: 35px;
-    letter-spacing: 40px;
+    font-size: 24px; /* Reducir tamaño en móviles */
+    letter-spacing: 10px; /* Reducir espaciado */
 }
 
-
-.textfield
-{
-    flex: 1;
-    text-align:left;
+.textfield {
+    flex: 1; /* Ocupar el espacio disponible */
+    text-align: left;
     background-color: #eeeeee;
     border-radius: 8px;
-    height: 97%;
+    height: 250px; /* Altura fija */
     padding: 10px;
     border: 1px solid #ccc;
-    float: right;
     box-sizing: border-box;
     resize: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    
+    margin: 5px; /* Espaciado entre campos */
+    min-width: 45%; /* Ancho mínimo para cada textfield */
 }
 
-.left-div
-{
-    margin-right: 5px
+.left-div {
+    margin-right: 5px; /* Mantener margen entre los textfield */
 }
 
 .button {
     background-color: #222831;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Reducir padding en móviles */
     margin: 5px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em; /* Reducir tamaño de fuente */
 }
 
-.buttonImage 
-{
-    width: 40px;
-    height: 40px;
+.buttonImage {
+    width: 30px; /* Tamaño base para móviles */
+    height: 30px; /* Tamaño base para móviles */
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    padding-left: 20px;
-    
 }
 
 .bigbuttonRow {
@@ -119,32 +105,90 @@ body {
     background-color: #76abae;
     padding: 5px;
     border-radius: 20px;
-    height: 10%;
+    height: auto; /* Altura automática */
     margin-top: 10px;
 }
 
-.bigbuttonImage 
-{
-    width: 80px;
-    height: 80px;
+.bigbuttonImage {
+    width: 60px; /* Tamaño base para móviles */
+    height: 60px; /* Tamaño base para móviles */
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    padding-left: 35px;
-    padding-right: 35px;
 }
 
 .fileDisplay {
     background-color: #ffffff;
-    border: 3px solid black; 
-    padding: 20px;
-    margin-top: 20px; /* Space between the button row and the file display */
+    border: 5px solid #76abae;
+    padding: 10px; /* Reducir padding en móviles */
+    margin-top: 10px;
     text-align: center;
-    min-height: 150px; /* Minimum height to ensure the area is visible */
+    min-height: 200px; /* Reducir altura mínima */
     display: flex;
-    flex-wrap: wrap; /* Allow files to wrap to the next line if needed */
-    justify-content: center; /* Center files horizontally */
-    align-items: center; /* Center files vertically */
-    gap: 10px; /* Space between files */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Media Queries para pantallas grandes */
+@media (min-width: 768px) {
+    .horuslogo {
+        width: 120px; /* Aumentar tamaño en pantallas grandes */
+        padding-right: 30px; /* Aumentar espaciado */
+    }
+
+    .buttonImage {
+        width: 50px; /* Aumentar tamaño en pantallas grandes */
+        height: 50px; /* Aumentar tamaño en pantallas grandes */
+    }
+
+    .bigbuttonImage {
+        width: 90px; /* Aumentar tamaño en pantallas grandes */
+        height: 90px; /* Aumentar tamaño en pantallas grandes */
+    }
+    .button {
+        width: 180px;
+        height: 60px;
+        font-size: 20px;
+    }
+}
+
+/* Media Queries para móviles */
+@media (max-width: 767px) {
+    .container {
+        width: 90%; /* Ocupar todo el ancho en móviles */
+        padding: 10px; /* Reducir padding */
+    }
+
+    .horuslogo {
+        width: 60px; /* Reducir tamaño del logo */
+        padding-right: 10px; /* Reducir espaciado */
+    }
+
+    .horusText {
+        font-size: 20px; /* Reducir tamaño de fuente */
+        letter-spacing: 5px; /* Reducir espaciado */
+    }
+
+    .button {
+        padding: 8px 12px; /* Reducir padding */
+        font-size: 0.8em; /* Reducir tamaño de fuente */
+    }
+
+    .buttonImage {
+        width: 25px; /* Reducir tamaño */
+        height: 25px; /* Reducir tamaño */
+    }
+
+    .bigbuttonImage {
+        width: 50px; /* Reducir tamaño */
+        height: 50px; /* Reducir tamaño */
+    }
+
+    .textfield {
+        height: 260px; /* Reducir altura */
+        flex: 1 1 45%; /* Ajustar el ancho para que quepan dos en una fila */
+        min-width: 45%; /* Ancho mínimo para evitar que se hagan demasiado pequeños */
+    }
 }
