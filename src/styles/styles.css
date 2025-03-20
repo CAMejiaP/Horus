@@ -129,6 +129,16 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    max-width: 100%; /* 🔹 Evitar que se expanda demasiado */
+    overflow: hidden; /* 🔹 Evitar desbordamientos */
+}
+.fileDisplay img {
+    max-width: 100%; /* 🔹 Evitar que las imágenes sean más grandes que el contenedor */
+    max-height: 250px; /* 🔹 Altura máxima */
+    width: auto; /* 🔹 Mantener proporción */
+    height: auto; /* 🔹 Mantener proporción */
+    object-fit: contain; /* 🔹 Ajustar imagen sin deformarla */
+    border-radius: 5px; /* 🔹 Opcional: bordes redondeados */
 }
 
 /* Media Queries para pantallas grandes */
@@ -136,6 +146,10 @@ body {
     .horuslogo {
         width: 120px; /* Aumentar tamaño en pantallas grandes */
         padding-right: 30px; /* Aumentar espaciado */
+    }
+
+    .fileDisplay img {
+        max-height: 300px; /* 🔹 Ajustar altura máxima en pantallas más grandes */
     }
 
     .buttonImage {
