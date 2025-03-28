@@ -15,9 +15,12 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Ancho relativo */
-    max-width: 800px; /* Ancho máximo para pantallas grandes */
-    margin: 20px auto; /* Centrar el contenedor */
+    width: 90%;
+    /* Ancho relativo */
+    max-width: 800px;
+    /* Ancho máximo para pantallas grandes */
+    margin: 20px auto;
+    /* Centrar el contenedor */
 }
 
 .buttonRow {
@@ -27,14 +30,18 @@ body {
     background-color: #76abae;
     padding: 5px;
     border-radius: 20px;
-    height: auto; /* Altura automática */
-    margin-bottom: 10px; /* Espaciado entre filas */
+    height: auto;
+    /* Altura automática */
+    margin-bottom: 10px;
+    /* Espaciado entre filas */
 }
 
 .fieldContainer {
     display: flex;
-    flex-direction: row; /* Mantener los textfield uno al lado del otro */
-    height: auto; /* Altura automática */
+    flex-direction: row;
+    /* Mantener los textfield uno al lado del otro */
+    height: auto;
+    /* Altura automática */
     padding: 5px 0;
     width: 100%;
 }
@@ -45,54 +52,70 @@ body {
     align-items: center;
     padding: 5px;
     border-radius: 8px;
-    height: auto; /* Altura automática */
-    margin-bottom: 10px; /* Espaciado */
+    height: auto;
+    /* Altura automática */
+    margin-bottom: 10px;
+    /* Espaciado */
 }
 
 .horuslogo {
-    width: 80px; /* Tamaño base para móviles */
-    height: auto; /* Mantener proporción */
-    padding-right: 20px; /* Reducir espaciado */
+    width: 80px;
+    /* Tamaño base para móviles */
+    height: auto;
+    /* Mantener proporción */
+    padding-right: 20px;
+    /* Reducir espaciado */
 }
 
 .horusText {
     color: white;
-    font-size: 24px; /* Reducir tamaño en móviles */
-    letter-spacing: 10px; /* Reducir espaciado */
+    font-size: 24px;
+    /* Reducir tamaño en móviles */
+    letter-spacing: 10px;
+    /* Reducir espaciado */
 }
 
 .textfield {
-    flex: 1; /* Ocupar el espacio disponible */
+    flex: 1;
+    /* Ocupar el espacio disponible */
     text-align: left;
     background-color: #eeeeee;
     border-radius: 8px;
-    height: 250px; /* Altura fija */
+    height: 250px;
+    /* Altura fija */
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
     resize: none;
-    margin: 5px; /* Espaciado entre campos */
-    min-width: 45%; /* Ancho mínimo para cada textfield */
+    margin: 5px;
+    /* Espaciado entre campos */
+    min-width: 45%;
+    /* Ancho mínimo para cada textfield */
 }
 
 .left-div {
-    margin-right: 5px; /* Mantener margen entre los textfield */
+    margin-right: 5px;
+    /* Mantener margen entre los textfield */
 }
 
 .button {
     background-color: #222831;
     color: white;
-    padding: 10px 15px; /* Reducir padding en móviles */
+    padding: 10px 15px;
+    /* Reducir padding en móviles */
     margin: 5px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 0.9em; /* Reducir tamaño de fuente */
+    font-size: 0.9em;
+    /* Reducir tamaño de fuente */
 }
 
 .buttonImage {
-    width: 30px; /* Tamaño base para móviles */
-    height: 30px; /* Tamaño base para móviles */
+    width: 30px;
+    /* Tamaño base para móviles */
+    height: 30px;
+    /* Tamaño base para móviles */
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -105,13 +128,16 @@ body {
     background-color: #76abae;
     padding: 5px;
     border-radius: 20px;
-    height: auto; /* Altura automática */
+    height: auto;
+    /* Altura automática */
     margin-top: 10px;
 }
 
 .bigbuttonImage {
-    width: 60px; /* Tamaño base para móviles */
-    height: 60px; /* Tamaño base para móviles */
+    width: 60px;
+    /* Tamaño base para móviles */
+    height: 60px;
+    /* Tamaño base para móviles */
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -120,47 +146,66 @@ body {
 .fileDisplay {
     background-color: #ffffff;
     border: 5px solid #76abae;
-    padding: 10px; /* Reducir padding en móviles */
+    padding: 10px;
+    /* Reducir padding en móviles */
     margin-top: 10px;
     text-align: center;
-    min-height: 200px; /* Reducir altura mínima */
+    min-height: 200px;
+    /* Reducir altura mínima */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    max-width: 100%; /* 🔹 Evitar que se expanda demasiado */
-    overflow: hidden; /* 🔹 Evitar desbordamientos */
+    max-width: 100%;
+    /* 🔹 Evitar que se expanda demasiado */
+    overflow: hidden;
+    /* 🔹 Evitar desbordamientos */
 }
+
 .fileDisplay img {
-    max-width: 100%; /* 🔹 Evitar que las imágenes sean más grandes que el contenedor */
-    max-height: 250px; /* 🔹 Altura máxima */
-    width: auto; /* 🔹 Mantener proporción */
-    height: auto; /* 🔹 Mantener proporción */
-    object-fit: contain; /* 🔹 Ajustar imagen sin deformarla */
-    border-radius: 5px; /* 🔹 Opcional: bordes redondeados */
+    max-width: 100%;
+    /* 🔹 Evitar que las imágenes sean más grandes que el contenedor */
+    max-height: 250px;
+    /* 🔹 Altura máxima */
+    width: auto;
+    /* 🔹 Mantener proporción */
+    height: auto;
+    /* 🔹 Mantener proporción */
+    object-fit: contain;
+    /* 🔹 Ajustar imagen sin deformarla */
+    border-radius: 5px;
+    /* 🔹 Opcional: bordes redondeados */
 }
 
 /* Media Queries para pantallas grandes */
 @media (min-width: 768px) {
     .horuslogo {
-        width: 120px; /* Aumentar tamaño en pantallas grandes */
-        padding-right: 30px; /* Aumentar espaciado */
+        width: 120px;
+        /* Aumentar tamaño en pantallas grandes */
+        padding-right: 30px;
+        /* Aumentar espaciado */
     }
 
     .fileDisplay img {
-        max-height: 300px; /* 🔹 Ajustar altura máxima en pantallas más grandes */
+        max-height: 300px;
+        /* 🔹 Ajustar altura máxima en pantallas más grandes */
     }
 
     .buttonImage {
-        width: 50px; /* Aumentar tamaño en pantallas grandes */
-        height: 50px; /* Aumentar tamaño en pantallas grandes */
+        width: 50px;
+        /* Aumentar tamaño en pantallas grandes */
+        height: 50px;
+        /* Aumentar tamaño en pantallas grandes */
     }
 
     .bigbuttonImage {
-        width: 90px; /* Aumentar tamaño en pantallas grandes */
-        height: 90px; /* Aumentar tamaño en pantallas grandes */
+        width: 90px;
+        /* Aumentar tamaño en pantallas grandes */
+        height: 90px;
+        /* Aumentar tamaño en pantallas grandes */
     }
+
     .button {
         width: 180px;
         height: 60px;
@@ -171,38 +216,53 @@ body {
 /* Media Queries para móviles */
 @media (max-width: 767px) {
     .container {
-        width: 90%; /* Ocupar todo el ancho en móviles */
-        padding: 10px; /* Reducir padding */
+        width: 90%;
+        /* Ocupar todo el ancho en móviles */
+        padding: 10px;
+        /* Reducir padding */
     }
 
     .horuslogo {
-        width: 60px; /* Reducir tamaño del logo */
-        padding-right: 10px; /* Reducir espaciado */
+        width: 60px;
+        /* Reducir tamaño del logo */
+        padding-right: 10px;
+        /* Reducir espaciado */
     }
 
     .horusText {
-        font-size: 20px; /* Reducir tamaño de fuente */
-        letter-spacing: 5px; /* Reducir espaciado */
+        font-size: 20px;
+        /* Reducir tamaño de fuente */
+        letter-spacing: 5px;
+        /* Reducir espaciado */
     }
 
     .button {
-        padding: 8px 12px; /* Reducir padding */
-        font-size: 0.8em; /* Reducir tamaño de fuente */
+        padding: 8px 12px;
+        /* Reducir padding */
+        font-size: 0.8em;
+        /* Reducir tamaño de fuente */
     }
 
     .buttonImage {
-        width: 25px; /* Reducir tamaño */
-        height: 25px; /* Reducir tamaño */
+        width: 25px;
+        /* Reducir tamaño */
+        height: 25px;
+        /* Reducir tamaño */
     }
 
     .bigbuttonImage {
-        width: 50px; /* Reducir tamaño */
-        height: 50px; /* Reducir tamaño */
+        width: 50px;
+        /* Reducir tamaño */
+        height: 50px;
+        /* Reducir tamaño */
     }
 
     .textfield {
-        height: 260px; /* Reducir altura */
-        flex: 1 1 45%; /* Ajustar el ancho para que quepan dos en una fila */
-        min-width: 45%; /* Ancho mínimo para evitar que se hagan demasiado pequeños */
-    }
+        height: 260px;
+        /* Reducir altura */
+        flex: 1 1 45%;
+        /* Ajustar el ancho para que quepan dos en una fila */
+        min-width: 45%;
+        /* Ancho mínimo para evitar que se hagan demasiado pequeños */
+    }
 }
