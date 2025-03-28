@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: horus
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn server:app
+    pythonVersion: 3.10
