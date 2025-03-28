@@ -11786,6 +11786,7 @@ html {
   list-style: none;
   padding: 12px 15px;
   border-top: 1px solid #ccc;
+  background-color: #76abae;
 }
 
 .controls .row {
@@ -12649,7 +12650,6 @@ body {
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 0.9em;
   /* Reducir tamaño de fuente */
 }
 
@@ -12751,7 +12751,6 @@ body {
   .button {
       width: 180px;
       height: 60px;
-      font-size: 20px;
   }
 }
 
@@ -12781,7 +12780,6 @@ body {
   .button {
       padding: 8px 12px;
       /* Reducir padding */
-      font-size: 0.8em;
       /* Reducir tamaño de fuente */
   }
 

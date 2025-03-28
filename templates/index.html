@@ -22,33 +22,56 @@
             <b class="horusText">HORUS</b>
         </div>
 
-        <div class="buttonRow">
-            <select id="inputLanguage" class="language-select" tabindex="0">
-                <option value="espanol">Español</option>
-                <option value="braille">Braille</option>
-            </select>
-
-            <button id="swapLanguages" class="button"><i class="fas fa-exchange-alt"></i></button>
-
-            <select id="outputLanguage" class="language-select" tabindex="0">
-                <option value="braille">Braille</option>
-                <option value="espanol">Español</option>
-            </select>
-
-            <img class="buttonImage" src="{{ url_for('static', filename='icons/voice.png') }}" id="voiceBtn">
-            <i id="microphone" class="fas fa-microphone buttonImage" tabindex="0"></i>
-
-        </div>
-
         <div class="fieldContainer">
             <textarea class="textfield left-div" id="inputText"></textarea>
             <textarea class="textfield" id="outputText" readonly></textarea>
         </div>
 
-        <div class="buttonRow">
+        <!--SUBMENU CON CONTROLES VARIOS-->
+        <ul class="controls">
+            <li class="row from">
+                <div class="icons">
+                    <i id="soundFrom" class="fas fa-volume-up" tabindex="0"></i>
+                </div>                              
+                <div class="icons">
+                    <i id="copyFrom" class="fas fa-copy" tabindex="0"></i>
+                </div>
+                <div class="icons">
+                    <i id="microphone" class="fas fa-microphone" tabindex="0"></i>
+                </div>
+                <div class="icons" id="keyboardIcon" style="display: none;">
+                    <i class="fas fa-keyboard"></i>
+                </div>
+
+                <div class="icons"></div><div class="icons"></div><div class="icons"></div>    
+                <select id="inputLanguage" class="language-select" disabled tabindex="0">
+                    <option value="espanol">Español</option>
+                    <option value="braille">Braille</option>
+                </select>
+            </li>
+            <li class="exchange"><i class="fas fa-exchange-alt" id="swapLanguages" tabindex="0"></i></li>
+            <li class="row to">
+                <select id="outputLanguage" class="language-select" disabled tabindex="0">
+                    <option value="braille">Braille</option>
+                    <option value="espanol">Español</option>
+                </select>
+                <div class="icons"></div><div class="icons"></div><div class="icons"></div>    
+                <div class="icons">
+                    <i id="soundTo" class="fas fa-volume-up" tabindex="0"></i>
+                </div>
+                <div class="icons">
+                    <i id="copyTo" class="fas fa-copy" tabindex="0"></i>
+                </div>
+                <div class="icons">
+                    
+                </div>
+            </li>
+        </ul>
+
+        <div class="buttonRow">           
             <button class="button" id="translate">Traducir</button>
             <button class="button" id="downloadSignageBtn">Descargar</button>
-            <button class="button" id="downloadMirrorImageBtn">Descargar (inverso)</button>
+            <button class="button" id="downloadMirrorImageBtn" style="font-size: 15px;">Descargar (inverso)</button>
         </div>
 
         <div class="bigbuttonRow">
