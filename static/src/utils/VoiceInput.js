@@ -73,3 +73,4 @@ class VoiceInput {
 }
 
 export default VoiceInput;
+
