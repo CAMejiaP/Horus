@@ -4,48 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página en Español con Braille</title>
-    <link rel="stylesheet" href="/src/styles/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="LogoHeader">
-            <img class="horuslogo" src="/src/icons/HORUSLogo.png">
+            <img class="horuslogo" src="{{ url_for('static', filename='icons/HORUSLogo.png') }}">
             <b class="horusText">HORUS</b>
         </div>
+
         <div class="buttonRow">
             <button class="button">Español</button>
             <button class="button">⇔</button>
             <button class="button">Braile</button>
-            <img class="buttonImage" src="/src/icons/voice.png">
+            <img class="buttonImage" src="{{ url_for('static', filename='icons/voice.png') }}">
         </div>
-        
+
         <div class="fieldContainer">
             <textarea class="textfield left-div" id="atraducir"></textarea>
             <textarea class="textfield" readonly></textarea>
         </div>
-        
+
         <div class="buttonRow">
             <button class="button" id="btntraducir">Traducir</button>
             <button class="button">Descargar</button>
             <button class="button">Descargar (inverso)</button>
         </div>
-        
+
         <div class="bigbuttonRow">
-            <img class="bigbuttonImage" src="/src/icons/folder.png" id="folder">
-            <img class="bigbuttonImage" src="/src/icons/image.png" id="camera">
-            <img class="bigbuttonImage" src="/src/icons/more.png">
+            <img class="bigbuttonImage" src="{{ url_for('static', filename='icons/folder.png') }}" id="folder">
+            <img class="bigbuttonImage" src="{{ url_for('static', filename='icons/image.png') }}" id="camera">
+            <img class="bigbuttonImage" src="{{ url_for('static', filename='icons/more.png') }}">
         </div>
-        
+
         <div class="fileDisplay" id="Id_fileDisplay">
             <video id="cameraView" autoplay playsinline></video>
         </div>
     </div>
 
     <canvas id="canvas" style="display: none;"></canvas>
-    <!-- Input oculto para seleccionar imágenes -->
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
 
-    <script src="JSCamera_index.js"></script>
-
+    <script src="{{ url_for('static', filename='JSCamera_index.js') }}"></script>
 </body>
 </html>
