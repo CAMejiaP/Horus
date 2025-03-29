@@ -2,6 +2,7 @@ import io
 import os
 import re
 import tempfile
+from pathlib import Path
 
 import numpy as np
 from dotenv import load_dotenv
@@ -70,11 +71,10 @@ def upload_image():
                 ""
             ).strip()
 
-            # 🔹 Limpieza del texto extraído
-            texto_extraido = re.sub(r'[^\x20-\x7EñÑáéíóúÁÉÍÓÚ\n\r\t]', '', texto_extraido)
+            # 🔹 Limpieza del texto extraído conservando caracteres Braille y especiales
+            texto_extraido = re.sub(r'[ ]{2,}', ' ', texto_extraido)
             texto_extraido = re.sub(r'\s+\n', '\n', texto_extraido)
             texto_extraido = re.sub(r'\n\s+', '\n', texto_extraido)
-            texto_extraido = re.sub(r'[ ]{2,}', ' ', texto_extraido)
             texto_extraido = texto_extraido.strip()
 
             print(f"🔍 Texto extraído: '{texto_extraido}'")
@@ -89,27 +89,23 @@ def upload_image():
         print(f"⚠️ Error general: {e}")
         return jsonify({"error": "⚠️ Error procesando la imagen"}), 500
 
-# 🔹 Generación de PDF con Braille
+# 🔹 Generación de PDF usando fuente Segoe UI Symbol
 @app.route('/download_pdf', methods=['POST'])
 def download_pdf():
-    from pathlib import Path
-
     data = request.get_json()
     text = data.get('text', '')
 
     if not text.strip():
         return jsonify({"error": "No se recibió texto para generar el PDF"}), 400
 
-    pdf = FPDF(orientation='P', unit='mm', format='Letter')
+    pdf = FPDF()
     pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
 
-    font_path = Path("static/fonts/DejaVuSans.ttf")
-    pdf.add_font("DejaVu", "", str(font_path))
-    pdf.set_font("DejaVu", size=14)
+    font_path = Path("static/fonts/SEGUISYM.ttf")
+    pdf.add_font("SegoeUISymbol", "", str(font_path))
+    pdf.set_font("SegoeUISymbol", size=12)
 
-    for line in text.split('\n'):
-        pdf.multi_cell(0, 10, line)
+    pdf.multi_cell(0, 5, text,align='J')
 
     pdf_output = io.BytesIO()
     pdf.output(pdf_output)
@@ -119,40 +115,6 @@ def download_pdf():
         pdf_output,
         as_attachment=True,
         download_name='traduccion_braille.pdf',
-        mimetype='application/pdf'
-    )
-
-@app.route('/download_pdf_mirror', methods=['POST'])
-def download_pdf_mirror():
-    from pathlib import Path
-
-    data = request.get_json()
-    text = data.get('text', '')
-
-    if not text.strip():
-        return jsonify({"error": "No se recibió texto para generar el PDF en espejo"}), 400
-
-    mirrored_text = "\n".join([line[::-1] for line in text.splitlines()])
-
-    pdf = FPDF(orientation='P', unit='mm', format='Letter')
-    pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
-
-    font_path = Path("static/fonts/DejaVuSans.ttf")
-    pdf.add_font("DejaVu", "", str(font_path))
-    pdf.set_font("DejaVu", size=14)
-
-    for line in mirrored_text.split('\n'):
-        pdf.multi_cell(0, 10, line, align='R')
-
-    pdf_output = io.BytesIO()
-    pdf.output(pdf_output)
-    pdf_output.seek(0)
-
-    return send_file(
-        pdf_output,
-        as_attachment=True,
-        download_name='traduccion_braille_espejo.pdf',
         mimetype='application/pdf'
     )
 

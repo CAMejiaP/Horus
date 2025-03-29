@@ -127,35 +127,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Hubo un problema al generar el PDF.');
         }
     });
-
-    // 🔽 Descargar PDF en espejo
-    const downloadMirrorImageBtn = document.getElementById('downloadMirrorImageBtn');
-    downloadMirrorImageBtn.addEventListener('click', async () => {
-        const outputText = document.getElementById('outputText').value;
-
-        try {
-            const response = await fetch('/download_pdf_mirror', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ text: outputText })
-            });
-
-            if (!response.ok) throw new Error('❌ Error al generar el PDF en espejo');
-
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'traduccion_braille_espejo.pdf';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url);
-        } catch (err) {
-            console.error('⚠️ Error descargando el PDF espejo:', err);
-            alert('Hubo un problema al generar el PDF espejo.');
-        }
-    });
 });
