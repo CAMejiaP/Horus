@@ -3,14 +3,15 @@ import io
 import cv2
 import easyocr
 import numpy as np
-from flask import Flask, jsonify, render_template, request, url_for
+from flask import Flask, jsonify, render_template, request, send_file, url_for
 from flask_cors import CORS
+from fpdf import FPDF
 from PIL import Image, UnidentifiedImageError
 
 app = Flask(
     __name__,
-    static_folder='static',       # Carpeta donde están los JS/CSS del build
-    template_folder='templates'   # Carpeta donde están los HTML generados
+    static_folder='static',
+    template_folder='templates'
 )
 
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -20,12 +21,11 @@ print("🔄 Cargando el modelo de EasyOCR...")
 reader = easyocr.Reader(['es', 'la'], gpu=True)
 print("✅ Modelo cargado correctamente.")
 
-# 🔹 Página principal (index.html)
+# 🔹 Página principal
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# 🔹 Otras páginas (si las tienes)
 @app.route('/acerca')
 def acerca():
     return render_template('acerca.html')
@@ -38,7 +38,7 @@ def testimonios():
 def traductor():
     return render_template('Traductor.html')
 
-# 🔹 Ruta para recibir imágenes
+# 🔹 Procesamiento OCR
 @app.route('/upload', methods=['POST'])
 def upload_image():
     try:
@@ -46,8 +46,8 @@ def upload_image():
             return jsonify({"error": "⚠️ No se envió ninguna imagen."}), 400
 
         file = request.files['image']
-        file_bytes = file.read()  # leer los bytes de la imagen
-        file.stream.seek(0)  # reiniciar el puntero por si se vuelve a leer
+        file_bytes = file.read()
+        file.stream.seek(0)
 
         try:
             image = Image.open(io.BytesIO(file_bytes))
@@ -56,7 +56,6 @@ def upload_image():
 
         print("📸 Aplicando OCR con EasyOCR...")
         result = reader.readtext(np.array(image))
-
         resultado = ' '.join([d[1] for d in result]).strip()
         print(f"✅ Texto detectado: {resultado}")
         return jsonify({"text": resultado})
@@ -64,6 +63,42 @@ def upload_image():
     except Exception as e:
         print(f"⚠️ Error en el servidor: {e}")
         return jsonify({"error": "⚠️ Error procesando la imagen"}), 500
+
+# 🔹 Generación de PDF con Braille
+@app.route('/download_pdf', methods=['POST'])
+def download_pdf():
+    from pathlib import Path
+
+    from fpdf import FPDF
+
+    data = request.get_json()
+    text = data.get('text', '')
+
+    if not text.strip():
+        return jsonify({"error": "No se recibió texto para generar el PDF"}), 400
+
+    pdf = FPDF(orientation='P', unit='mm', format='Letter')
+    pdf.add_page()
+    pdf.set_auto_page_break(auto=True, margin=15)
+
+    # ✅ Ruta corregida
+    font_path = Path("static/fonts/DejaVuSans.ttf")
+    pdf.add_font("DejaVu", "", str(font_path))
+    pdf.set_font("DejaVu", size=14)
+
+    for line in text.split('\n'):
+        pdf.multi_cell(0, 10, line)
+
+    pdf_output = io.BytesIO()
+    pdf.output(pdf_output)
+    pdf_output.seek(0)
+
+    return send_file(
+        pdf_output,
+        as_attachment=True,
+        download_name='traduccion_braille.pdf',
+        mimetype='application/pdf'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

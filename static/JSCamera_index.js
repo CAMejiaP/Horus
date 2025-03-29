@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const captureButton = document.getElementById('camera');
     const folderButton = document.getElementById('folder');
     const fileInput = document.getElementById('fileInput');
-    const outputField = document.getElementById('inputText'); // o inputText si quieres duplicarlo
+    const outputField = document.getElementById('inputText');
     const displayDiv = document.getElementById('Id_fileDisplay');
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
@@ -92,4 +92,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     startCamera();
+
+    // 🔽 Descargar PDF del texto de outputText
+    const downloadSignageBtn = document.getElementById('downloadSignageBtn');
+
+    downloadSignageBtn.addEventListener('click', async () => {
+        const outputText = document.getElementById('outputText').value;
+
+        try {
+            const response = await fetch('/download_pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: outputText })
+            });
+
+            if (!response.ok) throw new Error('❌ Error al generar el PDF');
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'traduccion_braille.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error('⚠️ Error descargando el PDF:', err);
+            alert('Hubo un problema al generar el PDF.');
+        }
+    });
 });

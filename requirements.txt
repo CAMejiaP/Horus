@@ -6,4 +6,5 @@ opencv_contrib_python==4.11.0.86
 opencv_python==4.11.0.86
 opencv_python_headless==4.11.0.86
 Pillow==11.1.0
+fpdf2
 gunicorn

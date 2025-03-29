@@ -1,10 +1,9 @@
-import { initializeLanguageSwapHandler } from './events/languageSwapHandler.js';
-import { initializeTranslationHandler } from './events/translationHandler.js';
 import { initializeCopyHandlers } from './events/copyHandler.js';
-import { initializeVoiceHandler } from './events/voiceHandler.js';
-import { initializeDownloadHandlers } from './events/downloadHandler.js';
+import { initializeKeyboardIconHandler } from './events/keyboardIconHandler.js';
+import { initializeLanguageSwapHandler } from './events/languageSwapHandler.js';
 import { initializeSoundHandlers } from './events/soundHandler.js';
-import { initializeKeyboardIconHandler } from './events/keyboardIconHandler.js'; 
+import { initializeTranslationHandler } from './events/translationHandler.js';
+import { initializeVoiceHandler } from './events/voiceHandler.js';
 
 
 /**
@@ -18,7 +17,6 @@ export function initializeEventHandlers() {
     initializeTranslationHandler();
     initializeCopyHandlers();
     initializeVoiceHandler();
-    initializeDownloadHandlers();
     initializeSoundHandlers();
     initializeKeyboardIconHandler(); 
 }
