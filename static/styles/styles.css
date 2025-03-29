@@ -163,10 +163,21 @@ body {
     }
 
     .button {
-        width: 180px;
-        height: 60px;
-        font-size: 20px;
+        background-color: #1F2326;
+        color: white;
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 0.9em;
+        flex: 1 1 calc(25% - 20px);  /* ← Cuatro botones por fila, con espacio entre ellos */
+        min-width: 120px;            /* ← Evita que sean demasiado pequeños */
+        box-sizing: border-box;
+        text-align: center;
+        white-space: nowrap;         /* Evita salto de línea interno */
     }
+    
 }
 
 @media (max-width: 767px) {
@@ -186,9 +197,9 @@ body {
     }
 
     .button {
-        padding: 8px 12px;
-        font-size: 0.8em;
-    }
+        flex: 1 1 100%;             /* En pantallas pequeñas, se apilan verticalmente */
+        font-size: 0.95em;
+    }    
 
     .buttonImage {
         width: 25px;
@@ -204,5 +215,37 @@ body {
         height: 260px;
         flex: 1 1 45%;
         min-width: 45%;
+    }
+    
+}
+@media (max-width: 767px) {
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .controls li {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .controls .icons {
+        margin: 5px;
+    }
+
+    .controls select.language-select {
+        margin-top: 10px;
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .controls .exchange {
+        order: -1; /* Opcional: pone el botón de intercambio al principio */
     }
 }
