@@ -8,6 +8,5 @@ Pillow==11.1.0
 torch==2.2.2+cpu
 ultralytics==8.3.98
 gunicorn
-llmwhisperer-client==1.2.0
-
+llmwhisperer-client==2.2.1  # o la última versión estable
 --extra-index-url https://download.pytorch.org/whl/cpu

@@ -43,22 +43,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     fileInput.addEventListener('change', async (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = async function (e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                displayDiv.innerHTML = '';
-                displayDiv.appendChild(img);
-                stopCamera();
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = async function (e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            displayDiv.innerHTML = '';
+            displayDiv.appendChild(img);
+            stopCamera();
 
-                outputField.value = "Procesando imagen cargada...";
-                await sendToServer(e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+            outputField.value = "Procesando imagen cargada...";
+            await sendToServer(e.target.result);
+
+            // 🔁 Limpiar input file para poder seleccionar la misma imagen de nuevo si se desea
+            fileInput.value = '';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
 
     async function sendToServer(imageData) {
         try {

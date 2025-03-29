@@ -61,13 +61,16 @@ export function initializeTranslationHandler() {
          * Expresión regular para validar texto en Braille.
          * @type {RegExp}
          */
-        const brailleRegex = /^[^a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s\(\)\!\?\,\;\:\.\-\—\'\"\/\@\%\$\€\¢\£\¥\§\&\*\^\+\=\>\<\[\]\{\}\`\~\\\|¿¡]*\S[^a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s\(\)\!\?\,\;\:\.\-\—\'\"\/\@\%\$\€\¢\£\¥\§\&\*\^\+\=\>\<\[\]\{\}\`\~\\\|¿¡]*$/;
+        
+        const brailleRegex = /^[\u2800-\u28FF\s\n\r<]+$/;
 
         // Validación del texto de entrada basado en el idioma seleccionado
         if (inputLanguageValue === 'espanol' && !spanishRegex.test(inputTextValue)) {
+            debugger;
             alert('El campo de entrada contiene caracteres no válidos para el español o No se ha ingresado nada.');
             return;
         } else if (inputLanguageValue === 'braille' && !brailleRegex.test(inputTextValue)) {
+            debugger;
             alert('El campo de entrada contiene caracteres no válidos para el braille o No se ha ingresado nada.');
             return;
         }

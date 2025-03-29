@@ -1,12 +1,19 @@
 import io
 import os
+import re
+import tempfile
 
 import numpy as np
+from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request, send_file
 from flask_cors import CORS
 from fpdf import FPDF
-from llmwhisperer_client import Client
 from PIL import Image, UnidentifiedImageError
+from unstract.llmwhisperer import LLMWhispererClientV2
+from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
+
+# 🔹 Cargar variables de entorno
+load_dotenv()
 
 app = Flask(
     __name__,
@@ -16,10 +23,7 @@ app = Flask(
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# Inicializar cliente de LLMWhisperer con API Key
-llm_client = Client(api_key=os.getenv("LLMWHISPERER_API_KEY"))
-
-# ✩ Página principal
+# 🔹 Página principal
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -36,7 +40,7 @@ def testimonios():
 def traductor():
     return render_template('Traductor.html')
 
-# ✩ Procesamiento OCR con LLMWhisperer
+# 🔹 Procesamiento OCR usando LLMWhisperer
 @app.route('/upload', methods=['POST'])
 def upload_image():
     try:
@@ -44,20 +48,48 @@ def upload_image():
             return jsonify({"error": "⚠️ No se envió ninguna imagen."}), 400
 
         file = request.files['image']
-        file_bytes = file.read()
 
-        print("📤 Enviando imagen a LLMWhisperer para OCR...")
-        result = llm_client.ocr(file_bytes)
-        texto = result.get('text', '').strip()
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_img:
+            file.save(temp_img.name)
 
-        print(f"✅ Texto detectado: {texto}")
-        return jsonify({"text": texto})
+            client = LLMWhispererClientV2(api_key=os.getenv("LLMWHISPERER_API_KEY"))
+            print("📤 Enviando imagen a LLMWhisperer...")
+
+            result = client.whisper(
+                file_path=temp_img.name,
+                wait_for_completion=True,
+                wait_timeout=200,
+                lang='spa'
+            )
+
+            print("📦 Resultado crudo:", result)
+
+            texto_extraido = (
+                result.get("result_text") or
+                result.get("extraction", {}).get("result_text") or
+                ""
+            ).strip()
+
+            # 🔹 Limpieza del texto extraído
+            texto_extraido = re.sub(r'[^\x20-\x7EñÑáéíóúÁÉÍÓÚ\n\r\t]', '', texto_extraido)
+            texto_extraido = re.sub(r'\s+\n', '\n', texto_extraido)
+            texto_extraido = re.sub(r'\n\s+', '\n', texto_extraido)
+            texto_extraido = re.sub(r'[ ]{2,}', ' ', texto_extraido)
+            texto_extraido = texto_extraido.strip()
+
+            print(f"🔍 Texto extraído: '{texto_extraido}'")
+
+            return jsonify({"text": texto_extraido})
+
+    except LLMWhispererClientException as e:
+        print(f"❌ Error en API LLMWhisperer: {e}")
+        return jsonify({"error": "❌ Error con la API LLMWhisperer"}), 500
 
     except Exception as e:
-        print(f"⚠️ Error procesando la imagen con LLMWhisperer: {e}")
+        print(f"⚠️ Error general: {e}")
         return jsonify({"error": "⚠️ Error procesando la imagen"}), 500
 
-# ✩ Generación de PDF con Braille
+# 🔹 Generación de PDF con Braille
 @app.route('/download_pdf', methods=['POST'])
 def download_pdf():
     from pathlib import Path

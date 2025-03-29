@@ -31,7 +31,7 @@ const brailleMap = {
     
     //more symbols specials-signos auxiliares
     '*': '⠔','-': '⠤','×': '⠦', '=': '⠶','©': '⠣⠨⠉⠜', '@': '⠐', 
-    '§': '⠬', 'Bs': '⠸⠃⠎',
+    'Bs': '⠸⠃⠎',
 
 };
 /*
