@@ -1,11 +1,11 @@
 import io
+import os
 
-import cv2
-import easyocr
 import numpy as np
-from flask import Flask, jsonify, render_template, request, send_file, url_for
+from flask import Flask, jsonify, render_template, request, send_file
 from flask_cors import CORS
 from fpdf import FPDF
+from llmwhisperer_client import Client
 from PIL import Image, UnidentifiedImageError
 
 app = Flask(
@@ -16,12 +16,10 @@ app = Flask(
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# 🔹 Cargar modelo OCR una vez
-print("🔄 Cargando el modelo de EasyOCR...")
-reader = easyocr.Reader(['es', 'la'], gpu=True)
-print("✅ Modelo cargado correctamente.")
+# Inicializar cliente de LLMWhisperer con API Key
+llm_client = Client(api_key=os.getenv("LLMWHISPERER_API_KEY"))
 
-# 🔹 Página principal
+# ✩ Página principal
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -38,7 +36,7 @@ def testimonios():
 def traductor():
     return render_template('Traductor.html')
 
-# 🔹 Procesamiento OCR
+# ✩ Procesamiento OCR con LLMWhisperer
 @app.route('/upload', methods=['POST'])
 def upload_image():
     try:
@@ -47,29 +45,22 @@ def upload_image():
 
         file = request.files['image']
         file_bytes = file.read()
-        file.stream.seek(0)
 
-        try:
-            image = Image.open(io.BytesIO(file_bytes))
-        except UnidentifiedImageError:
-            return jsonify({"error": "⚠️ Archivo de imagen inválido."}), 400
+        print("📤 Enviando imagen a LLMWhisperer para OCR...")
+        result = llm_client.ocr(file_bytes)
+        texto = result.get('text', '').strip()
 
-        print("📸 Aplicando OCR con EasyOCR...")
-        result = reader.readtext(np.array(image))
-        resultado = ' '.join([d[1] for d in result]).strip()
-        print(f"✅ Texto detectado: {resultado}")
-        return jsonify({"text": resultado})
+        print(f"✅ Texto detectado: {texto}")
+        return jsonify({"text": texto})
 
     except Exception as e:
-        print(f"⚠️ Error en el servidor: {e}")
+        print(f"⚠️ Error procesando la imagen con LLMWhisperer: {e}")
         return jsonify({"error": "⚠️ Error procesando la imagen"}), 500
 
-# 🔹 Generación de PDF con Braille
+# ✩ Generación de PDF con Braille
 @app.route('/download_pdf', methods=['POST'])
 def download_pdf():
     from pathlib import Path
-
-    from fpdf import FPDF
 
     data = request.get_json()
     text = data.get('text', '')
@@ -81,7 +72,6 @@ def download_pdf():
     pdf.add_page()
     pdf.set_auto_page_break(auto=True, margin=15)
 
-    # ✅ Ruta corregida
     font_path = Path("static/fonts/DejaVuSans.ttf")
     pdf.add_font("DejaVu", "", str(font_path))
     pdf.set_font("DejaVu", size=14)
@@ -104,15 +94,12 @@ def download_pdf():
 def download_pdf_mirror():
     from pathlib import Path
 
-    from fpdf import FPDF
-
     data = request.get_json()
     text = data.get('text', '')
 
     if not text.strip():
         return jsonify({"error": "No se recibió texto para generar el PDF en espejo"}), 400
 
-    # Invertir horizontalmente cada línea de texto
     mirrored_text = "\n".join([line[::-1] for line in text.splitlines()])
 
     pdf = FPDF(orientation='P', unit='mm', format='Letter')
@@ -123,7 +110,6 @@ def download_pdf_mirror():
     pdf.add_font("DejaVu", "", str(font_path))
     pdf.set_font("DejaVu", size=14)
 
-    # 👉 Alineación a la derecha para efecto espejo completo
     for line in mirrored_text.split('\n'):
         pdf.multi_cell(0, 10, line, align='R')
 
