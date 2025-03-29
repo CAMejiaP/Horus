@@ -100,5 +100,43 @@ def download_pdf():
         mimetype='application/pdf'
     )
 
+@app.route('/download_pdf_mirror', methods=['POST'])
+def download_pdf_mirror():
+    from pathlib import Path
+
+    from fpdf import FPDF
+
+    data = request.get_json()
+    text = data.get('text', '')
+
+    if not text.strip():
+        return jsonify({"error": "No se recibió texto para generar el PDF en espejo"}), 400
+
+    # Invertir horizontalmente cada línea de texto
+    mirrored_text = "\n".join([line[::-1] for line in text.splitlines()])
+
+    pdf = FPDF(orientation='P', unit='mm', format='Letter')
+    pdf.add_page()
+    pdf.set_auto_page_break(auto=True, margin=15)
+
+    font_path = Path("static/fonts/DejaVuSans.ttf")
+    pdf.add_font("DejaVu", "", str(font_path))
+    pdf.set_font("DejaVu", size=14)
+
+    # 👉 Alineación a la derecha para efecto espejo completo
+    for line in mirrored_text.split('\n'):
+        pdf.multi_cell(0, 10, line, align='R')
+
+    pdf_output = io.BytesIO()
+    pdf.output(pdf_output)
+    pdf_output.seek(0)
+
+    return send_file(
+        pdf_output,
+        as_attachment=True,
+        download_name='traduccion_braille_espejo.pdf',
+        mimetype='application/pdf'
+    )
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
