@@ -8,6 +8,6 @@ opencv_contrib_python==4.11.0.86
 opencv_python==4.11.0.86
 opencv_python_headless==4.11.0.86
 Pillow==11.1.0
-torch==2.6.0+cu118
+torch==2.2.2
 ultralytics==8.3.98
 gunicorn
