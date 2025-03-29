@@ -1,4 +1,3 @@
-easyocr==1.7.2
 Flask==3.1.0
 flask_cors==5.0.1
 fpdf==1.7.2
@@ -9,5 +8,6 @@ Pillow==11.1.0
 torch==2.2.2+cpu
 ultralytics==8.3.98
 gunicorn
+llmwhisperer-client==1.2.0
 
 --extra-index-url https://download.pytorch.org/whl/cpu
