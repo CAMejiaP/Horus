@@ -13,6 +13,7 @@
     <!-- Íconos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -20,11 +21,6 @@
         <div class="LogoHeader">
             <img class="horuslogo" src="{{ url_for('static', filename='icons/HORUSLogo.png') }}">
             <b class="horusText">HORUS</b>
-        </div>
-
-        <div class="fieldContainer">
-            <textarea class="textfield left-div" id="inputText"></textarea>
-            <textarea class="textfield" id="outputText" readonly></textarea>
         </div>
 
         <!--SUBMENU CON CONTROLES VARIOS-->
@@ -68,6 +64,11 @@
             </li>
         </ul>
 
+        <div class="fieldContainer">
+            <textarea class="textfield left-div" id="inputText"></textarea>
+            <textarea class="textfield" id="outputText" readonly></textarea>
+        </div>
+        
         <div class="buttonRow">           
             <button class="button" id="translate">Traducir</button>
             <button class="button" id="downloadSignageBtn">Descargar</button>

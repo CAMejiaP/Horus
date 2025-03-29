@@ -46,8 +46,11 @@ def upload_image():
             return jsonify({"error": "⚠️ No se envió ninguna imagen."}), 400
 
         file = request.files['image']
+        file_bytes = file.read()  # leer los bytes de la imagen
+        file.stream.seek(0)  # reiniciar el puntero por si se vuelve a leer
+
         try:
-            image = Image.open(io.BytesIO(file.read()))
+            image = Image.open(io.BytesIO(file_bytes))
         except UnidentifiedImageError:
             return jsonify({"error": "⚠️ Archivo de imagen inválido."}), 400
 

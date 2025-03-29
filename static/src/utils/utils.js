@@ -7,6 +7,7 @@
 export function addLineBreaks(text) {
     const maxCharsPerLine = 40;
     const maxLines = 25;
+    console.log("jsPDF disponible:", window.jspdf?.jsPDF);
     let words = text.split(/\s+/); // Dividir el texto en palabras
     let result = '';
     let lineWords = [];
@@ -98,7 +99,8 @@ export function downloadPDF(element, filename, margin = 10) {
         leftContext.drawImage(canvas, 0, 0, leftWidth, leftHeight, 0, 0, leftWidth, leftHeight);
 
         const imgData = leftCanvas.toDataURL('image/png');
-        let pdf = new jsPDF('p', 'mm', 'a4');
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');        
         const pdfWidth = pdf.internal.pageSize.getWidth() - 2 * margin;
         const pdfHeight = pdf.internal.pageSize.getHeight() - 2 * margin;
         const imgWidth = leftCanvas.width / scale;
