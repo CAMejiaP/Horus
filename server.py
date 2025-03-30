@@ -102,7 +102,7 @@ def download_pdf():
     pdf.add_page()
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    font_path = os.path.join(BASE_DIR, 'static', 'fonts', 'SEGUISYM.ttf')
+    font_path = os.path.join(BASE_DIR, 'static', 'fonts', 'SEGUISYM.TTF')
 
     # Verificación de existencia de la fuente
     if not os.path.exists(font_path):
