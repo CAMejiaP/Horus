@@ -103,7 +103,7 @@ def download_pdf():
 
     font_path = Path("static/fonts/SEGUISYM.ttf")
     pdf.add_font("SegoeUISymbol", "", str(font_path), uni=True)
-    pdf.set_font("SegoeUISymbol", size=12)
+    pdf.set_font("Helvetica", size=12)
 
     pdf.multi_cell(0, 5, text,align='J')
 
