@@ -101,8 +101,16 @@ def download_pdf():
     pdf = FPDF()
     pdf.add_page()
 
-    font_path = Path("static/fonts/SEGUISYM.ttf")
-    pdf.add_font("SegoeUISymbol", "", str(font_path), uni=True)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    font_path = os.path.join(BASE_DIR, 'static', 'fonts', 'SEGUISYM.ttf')
+
+    # Verificación de existencia de la fuente
+    if not os.path.exists(font_path):
+        print(f"❌ Fuente no encontrada en: {font_path}")
+    else:
+        print(f"✅ Fuente encontrada en: {font_path}")
+    
+    pdf.add_font("SegoeUISymbol", "", font_path, uni=True)
     pdf.set_font("SegoeUISymbol", size=12)
 
     pdf.multi_cell(0, 5, text,align='J')
