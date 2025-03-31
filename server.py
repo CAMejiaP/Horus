@@ -122,7 +122,7 @@ def download_pdf():
     return send_file(
         pdf_output,
         as_attachment=True,
-        download_name='traduccion_braille.pdf',
+        download_name='traduccion.pdf',
         mimetype='application/pdf'
     )
 

@@ -43,26 +43,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     fileInput.addEventListener('change', async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = async function (e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
+        const file = event.target.files[0];
+        if (file) {
             displayDiv.innerHTML = '';
-            displayDiv.appendChild(img);
-            stopCamera();
 
-            outputField.value = "Procesando imagen cargada...";
-            await sendToServer(e.target.result);
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = async function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    displayDiv.appendChild(img);
 
-            // 🔁 Limpiar input file para poder seleccionar la misma imagen de nuevo si se desea
+                    outputField.value = "Procesando imagen cargada...";
+                    await sendToServer(e.target.result, file.name);
+                };
+                reader.readAsDataURL(file);
+            } else if (file.type === 'application/pdf') {
+                const objectURL = URL.createObjectURL(file);
+                const pdfPreview = document.createElement('embed');
+                pdfPreview.src = objectURL;
+                pdfPreview.type = 'application/pdf';
+                pdfPreview.width = '100%';
+                pdfPreview.height = '300px';
+                displayDiv.appendChild(pdfPreview);
+
+                outputField.value = "Procesando PDF...";
+                await sendToServer(objectURL, file.name);
+            } else {
+                alert('Solo se aceptan archivos JPG, PNG o PDF.');
+            }
+
             fileInput.value = '';
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
+        }
+    });
 
     async function sendToServer(imageData) {
         try {
@@ -117,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'traduccion_braille.pdf';
+            a.download = 'traduccion.pdf';
             document.body.appendChild(a);
             a.click();
             a.remove();
