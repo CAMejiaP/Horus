@@ -1,9 +1,75 @@
+:root {
+    --blanco: #FFFFFF;
+    --verde_mierda: #181C14;
+    --primario: #3C3D37;
+    --secundario: #6CA8AD;
+    --terciario: #697565;
+    --cuarto: #ECDFCC;
+    --gris: #757575;
+    --degradado: #DFE9F3;
+}
+
+/*ESTO HACE QUE SI LE PONGO 200 DE TAMAÑO SEAN 200 DE TAMAÑO EN LUGAR DE 200 MAS TODOS LOS PADDINGS*/
+*,
+*::before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Krub", sans-serif;
+    /* Esto sirve para hacer un degradao, 1.hacia donde va, 2.color inicial y que transparencia 3.color final y que tranparencia*/
+
+}
+
+/*Con las dos lineas de arriba 1rem = 10px*/
+.titulo {
+    text-align: center;
+    font-size: 3.8rem;
+}
+
+.controls {
+    list-style: none;
+    padding: 12px 15px;
+    background-color: var(--verde_mierda);
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    /*NECESARIO PARA LA LINEA DE ABAJO*/
+    /* scroll-snap-type: y mandatory; */
+    /* para que el scroll funcione para los servicio */
+}
+
+.iconos {
+    height: 10rem;
+    width: 10rem;
+    background-color: var(--verde_mierda);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    /* si aqui fuera column el justify contento ya no funciona */
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.icono-pdf {
+    color: var(--blanco);
+    /* amarillo */
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #1F2326; /* extraído de fondo */
+    background-color: var(--verde_mierda);
+    /* extraído de fondo */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* cambiado de center a flex-start */
+    align-items: flex-start;
+    /* cambiado de center a flex-start */
     min-height: 100vh;
     margin: 0;
     padding: 20px 0;
@@ -11,7 +77,7 @@ body {
 
 .container {
     text-align: center;
-    background-color: #1F2326;
+    background-color: var(--primario);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -24,7 +90,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #6CA8AD; /* azul verdoso del fondo */
+    background-color: var(--terciario);
+    /* azul verdoso del fondo */
     padding: 5px;
     border-radius: 20px;
     margin-bottom: 10px;
@@ -79,17 +146,6 @@ body {
     margin-right: 5px;
 }
 
-.button {
-    background-color: #1F2326;
-    color: white;
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
 .buttonImage {
     width: 30px;
     height: 30px;
@@ -100,10 +156,10 @@ body {
 
 .bigbuttonRow {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: #6CA8AD;
-    padding: 5px;
+    background-color: var(--terciario);
+    padding: 1rem;
     border-radius: 20px;
     margin-top: 10px;
     flex-wrap: wrap;
@@ -119,7 +175,7 @@ body {
 
 .fileDisplay {
     background-color: #ffffff;
-    border: 5px solid #6CA8AD;
+    border: 5px solid var(--terciario);
     padding: 10px;
     margin-top: 10px;
     text-align: center;
@@ -133,7 +189,8 @@ body {
     overflow: hidden;
 }
 
-.fileDisplay img, .fileDisplay video {
+.fileDisplay img,
+.fileDisplay video {
     max-width: 100%;
     max-height: 250px;
     width: auto;
@@ -148,7 +205,8 @@ body {
         padding-right: 30px;
     }
 
-    .fileDisplay img, .fileDisplay video {
+    .fileDisplay img,
+    .fileDisplay video {
         max-height: 300px;
     }
 
@@ -163,21 +221,25 @@ body {
     }
 
     .button {
-        background-color: #1F2326;
+        background-color: var(--verde_mierda);
         color: white;
         padding: 10px;
         margin: 5px;
+        height: 7rem;
         border: none;
         border-radius: 25px;
         cursor: pointer;
-        font-size: 0.9em;
-        flex: 1 1 calc(25% - 20px);  /* ← Cuatro botones por fila, con espacio entre ellos */
-        min-width: 120px;            /* ← Evita que sean demasiado pequeños */
+        font-size: 2.5rem;
+        flex: 1 1 calc(50% - 20px);
+        /* ← Cuatro botones por fila, con espacio entre ellos */
+        min-width: 120px;
+        /* ← Evita que sean demasiado pequeños */
         box-sizing: border-box;
         text-align: center;
-        white-space: nowrap;         /* Evita salto de línea interno */
+        white-space: nowrap;
+        /* Evita salto de línea interno */
     }
-    
+
 }
 
 @media (max-width: 767px) {
@@ -197,9 +259,26 @@ body {
     }
 
     .button {
-        flex: 1 1 100%;             /* En pantallas pequeñas, se apilan verticalmente */
-        font-size: 0.95em;
-    }    
+        flex: 1 1 100%;
+        /* En pantallas pequeñas, se apilan verticalmente */
+        font-size: 1.7rem;
+        width: 100%;
+        background-color: var(--verde_mierda);
+        color: white;
+        padding: 10px;
+        margin: 5px;
+        height: 7rem;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 2.5rem;
+        flex: 1 1 calc(50% - 20px);
+        /* ← Cuatro botones por fila, con espacio entre ellos */
+        box-sizing: border-box;
+        text-align: center;
+        white-space: nowrap;
+        /* Evita salto de línea interno */
+    }
 
     .buttonImage {
         width: 25px;
@@ -216,8 +295,9 @@ body {
         flex: 1 1 45%;
         min-width: 45%;
     }
-    
+
 }
+
 @media (max-width: 767px) {
     .controls {
         display: flex;
@@ -237,6 +317,7 @@ body {
 
     .controls .icons {
         margin: 5px;
+        color: var(--blanco);
     }
 
     .controls select.language-select {
@@ -246,6 +327,255 @@ body {
     }
 
     .controls .exchange {
-        order: -1; /* Opcional: pone el botón de intercambio al principio */
+        order: -1;
+        /* Opcional: pone el botón de intercambio al principio */
     }
+}
+
+.card {
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    --bs-card-border-width: 1px;
+    --bs-card-border-color: var(--bs-border-color-translucent);
+    --bs-card-border-radius: 0.375rem;
+    --bs-card-bg: vfff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--verde_mierda);
+    border: var(--verde_mierda) solid var(--verde_mierda);
+    border-radius: var(--verde_mierda);
+}
+
+#virtualKeyboardSection {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 700px;
+    height: 390px;
+    max-width: 100%;
+    z-index: 1050;
+    background-color: var(--verde_mierda);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.key-container {
+    --bs-gutter-x: 1.5rem;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .key-container {
+        max-width: 1140px;
+    }
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.rounded-4 {
+    border-radius: var(--bs-border-radius-xl) !important;
+}
+
+.border-0 {
+    border: 0 !important;
+}
+
+.p-5 {
+    padding: 3rem !important;
+}
+
+.px-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+    .px-md-4 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    background: transparent url("data:image/svg+xml,...") center/1em auto no-repeat;
+    border: 0;
+    border-radius: 0.375rem;
+    opacity: .5;
+}
+
+.btn-close:hover {
+    opacity: .75;
+}
+
+.float-end {
+    float: right !important;
+}
+
+.fw-bolder {
+    font-weight: bolder !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0;
+    border-radius: 0.375rem;
+    opacity: 0.5;
+}
+
+.btn-close:hover {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+.btn-close:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(30, 48, 243, 0.25);
+    opacity: 1;
+}
+
+.btn-close:disabled,
+.btn-close.disabled {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    opacity: 0.25;
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.keyboard-container {
+    padding: 10px;
+    background-color: var(--terciario);
+}
+
+.keyboard-container button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 45px;
+    height: 45px;
+    margin: 2px;
+}
+
+.keyboard-container button.special-button {
+    width: auto;
+    padding: 0 15px;
+}
+
+.keyboard-container button span.braille {
+    font-size: 1.25rem;
+}
+
+.keyboard-container button span.char {
+    font-size: 0.75rem;
+}
+
+.keyboard-container button:hover {
+    background-color: #e2e6ea;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.keyboard-container button:active {
+    background-color: #dae0e5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .keyboard-container {
+        padding: 5px;
+    }
+
+    .keyboard-row {
+        flex-wrap: wrap;
+    }
+
+    .keyboard-container button {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    .keyboard-container button.special-button {
+        width: auto;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .keyboard-container button {
+        width: 35px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+
+    .keyboard-container button span.braille {
+        font-size: 1rem;
+    }
+
+    .keyboard-container button span.char {
+        font-size: 0.6rem;
+    }
+}
+
+.floating-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.floating-panel-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.floating-panel-header {
+    cursor: move;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
