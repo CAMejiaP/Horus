@@ -304,7 +304,7 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        padding: 0;
+        padding: 2rem;
     }
 
     .controls li {
@@ -326,10 +326,6 @@ body {
         max-width: 300px;
     }
 
-    .controls .exchange {
-        order: -1;
-        /* Opcional: pone el botón de intercambio al principio */
-    }
 }
 
 .card {
