@@ -613,3 +613,7 @@ body {
 .right-group {
     justify-content: space-evenly; /* Alinea los iconos a la derecha */
 }
+
+.seleccion{
+    cursor: pointer;
+}
