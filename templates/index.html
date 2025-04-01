@@ -23,60 +23,9 @@
             <b class="horusText">HORUS</b>
         </div>
 
-        <!--SUBMENO CON CONTROLES VARIOS-->
-        <div class="bigbuttonRow2 controls">
-            <!--ICONO VOLUMENFROM-->
-            <div class="icons">
-                <svg xmlns="http://www.w3.org/2000/svg" id="soundFrom" tabindex="0" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
-                    stroke-width="2">
-                    <path d="M15 8a5 5 0 0 1 0 8"></path>
-                    <path d="M17.7 5a9 9 0 0 1 0 14"></path>
-                    <path
-                        d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5">
-                    </path>
-                </svg>
-            </div>
-            <!--ICONO COPIAR FROM-->
-            <div class="icons">
-                <svg xmlns="http://www.w3.org/2000/svg" id="copyFrom" class="fas fa-copy" tabindex="0"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    width="24" height="24" stroke-width="2">
-                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                    </path>
-                    <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
-                </svg>
-            </div>
-
-            <!--ICONO MICROFONO-->
-            <div class="icons" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" id="microphone" class="fas fa-microphone" tabindex="0"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    width="24" height="24" stroke-width="2">
-                    <path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"></path>
-                    <path d="M5 10a7 7 0 0 0 14 0"></path>
-                    <path d="M8 21l8 0"></path>
-                    <path d="M12 17l0 4"></path>
-                </svg>
-            </div>
-
-            <!--ICONO TECLADO-->
-            <div class="icons" id="keyboardIcon" style="display: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" id="keyboard" class="fas fa-keyboard" tabindex="0" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
-                    <path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z"></path>
-                    <path d="M6 10l0 .01"></path>
-                    <path d="M10 10l0 .01"></path>
-                    <path d="M14 10l0 .01"></path>
-                    <path d="M18 10l0 .01"></path>
-                    <path d="M6 14l0 .01"></path>
-                    <path d="M18 14l0 .01"></path>
-                    <path d="M10 14l4 .01"></path>
-                </svg>
-            </div>
-
+        <div class="bigbuttonRow2">
             <!--SECCION DE CAMBIO DE LENGUAJE-->
-            <div class="icons">
+            <div class="lang-switch">
                 <!--LENGUAJE ORIGEN-->
                 <select id="inputLanguage" class="language-select" disabled tabindex="0">
                     <option value="espanol">Español</option>
@@ -92,35 +41,97 @@
                     <option value="espanol">Español</option>
                 </select>
             </div>
-
-            <!--ICONO VOLUMENTO-->
-            <div class="icons">
-                <svg xmlns="http://www.w3.org/2000/svg" id="soundTo" tabindex="0" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"
-                    stroke-width="2">
-                    <path d="M15 8a5 5 0 0 1 0 8"></path>
-                    <path d="M17.7 5a9 9 0 0 1 0 14"></path>
-                    <path
-                        d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5">
-                    </path>
-                </svg>
-            </div>
-            <!--ICONO COPIAR FROM-->
-            <div class="icons">
-                <svg xmlns="http://www.w3.org/2000/svg" id="copyTo" class="fas fa-copy" tabindex="0" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24"
-                    height="24" stroke-width="2">
-                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
-                    </path>
-                    <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
-                </svg>
-            </div>
         </div>
 
         <div class="fieldContainer">
             <textarea class="textfield left-div" id="inputText"></textarea>
             <textarea class="textfield" id="outputText" readonly></textarea>
         </div>
+
+         <!--SUBMENO CON CONTROLES VARIOS-->
+         <div class="bigbuttonRow3 controls">
+            <!-- Iconos izquierda -->
+            <div class="icon-group left-group">
+                <!--ICONO VOLUMENFROM-->
+                <div class="icons">
+                    <svg class="seleccion" xmlns="http://www.w3.org/2000/svg" id="soundFrom" tabindex="0"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M15 8a5 5 0 0 1 0 8"></path>
+                        <path d="M17.7 5a9 9 0 0 1 0 14"></path>
+                        <path
+                            d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5">
+                        </path>
+                    </svg>
+                </div>
+                <!--ICONO COPIAR FROM-->
+                <div class="icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="copyFrom" class="fas fa-copy seleccion" tabindex="0"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                        </path>
+                        <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                    </svg>
+                </div>
+
+                <!--ICONO MICROFONO-->
+                <div class="icons" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="microphone" class="fas fa-microphone seleccion"
+                        tabindex="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"></path>
+                        <path d="M5 10a7 7 0 0 0 14 0"></path>
+                        <path d="M8 21l8 0"></path>
+                        <path d="M12 17l0 4"></path>
+                    </svg>
+                </div>
+
+                <!--ICONO TECLADO-->
+                <div class="icons" id="keyboardIcon" style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="keyboard" class="fas fa-keyboard seleccion" tabindex="0"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z"></path>
+                        <path d="M6 10l0 .01"></path>
+                        <path d="M10 10l0 .01"></path>
+                        <path d="M14 10l0 .01"></path>
+                        <path d="M18 10l0 .01"></path>
+                        <path d="M6 14l0 .01"></path>
+                        <path d="M18 14l0 .01"></path>
+                        <path d="M10 14l4 .01"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Iconos derecha -->
+            <div class="icon-group right-group">
+                <!--ICONO VOLUMENTO-->
+                <div class="icons">
+                    <svg class="seleccion" xmlns="http://www.w3.org/2000/svg" id="soundTo" tabindex="0"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M15 8a5 5 0 0 1 0 8"></path>
+                        <path d="M17.7 5a9 9 0 0 1 0 14"></path>
+                        <path
+                            d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5">
+                        </path>
+                    </svg>
+                </div>
+                <!--ICONO COPIAR FROM-->
+                <div class="icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="copyTo" class="fas fa-copy seleccion" tabindex="0"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2">
+                        </path>
+                        <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
 
         <div class="buttonRow">
             <button class="button" id="translate">Traducir</button>
