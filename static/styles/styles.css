@@ -575,3 +575,29 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.bigbuttonRow2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--verde_mierda);
+    padding: 1rem;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.funciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+    .bigbuttonRow2 {
+        display: grid
+;
+        grid: auto / repeat(3, 1fr);
+        column-gap: 5rem;
+    }
+}
