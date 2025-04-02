@@ -1,6 +1,8 @@
+import base64
 import io
 import os
 import re
+import shutil
 import tempfile
 from pathlib import Path
 
@@ -12,6 +14,8 @@ from fpdf import FPDF
 from PIL import Image, UnidentifiedImageError
 from unstract.llmwhisperer import LLMWhispererClientV2
 from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
+
+from backend.ejecutarDeteccion import ejecutarDeteccion
 
 # 🔹 Cargar variables de entorno
 load_dotenv()
@@ -132,9 +136,55 @@ def getbrailletext():
     base64_original = data.get('image')
     base64_contrast = data.get('contrast_image')
 
-    # Por ahora, devolvemos texto simulado
-    return jsonify({"text": "hola como estan"})
+    # Definir rutas temporales
+    rutaImagen = "original_input.png"
+    rutaImagenProcesada = "contrasted_input.png"
+    nombreImagen = "input"
 
+    # Función para guardar imagen desde base64
+    def guardar_imagen_base64(data_base64, destino):
+        if "," in data_base64:
+            data_base64 = data_base64.split(",")[1]  # Remover encabezado data:image/...
+        with open(destino, "wb") as f:
+            f.write(base64.b64decode(data_base64))
+
+    # Guardar las imágenes en disco
+    guardar_imagen_base64(base64_original, rutaImagen)
+    guardar_imagen_base64(base64_contrast, rutaImagenProcesada)
+
+    # Ejecutar detección
+    ejecutarDeteccion(rutaImagen, rutaImagenProcesada, nombreImagen)
+
+    # Leer resultados
+    texto_extraido = ""
+    imagen_codificada = ""
+
+    try:
+        with open("runs/detect/predict/braille_text.txt", "r", encoding="utf-8") as f:
+            texto_extraido = f.read()
+    except FileNotFoundError:
+        texto_extraido = "No se encontró el archivo de texto."
+
+    try:
+        with open("runs/detect/predict/output.png", "rb") as f:
+            imagen_codificada = base64.b64encode(f.read()).decode("utf-8")
+    except FileNotFoundError:
+        imagen_codificada = ""
+
+    # Limpiar todo lo usado
+    for path in [rutaImagen, rutaImagenProcesada]:
+        if os.path.exists(path):
+            os.remove(path)
+
+    carpeta_runs = "runs"
+    if os.path.exists(carpeta_runs):
+        shutil.rmtree(carpeta_runs)
+
+    # Devolver el texto y la imagen resultante
+    return jsonify({
+        "text": texto_extraido,
+        "image": f"data:image/png;base64,{imagen_codificada}"
+    })
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

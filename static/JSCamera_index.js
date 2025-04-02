@@ -15,19 +15,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="field">
                 <label for="uploadImage" hidden>Subir imagen</label>
                 <input type="file" id="uploadImage" accept="image/*" hidden>
-            </div>
-            <div class="field">
-                <label for="contrastSlider">Contraste: <span id="contrastValue" class="ui label">0</span></label>
-                <div class="range-wrapper">
-                    <input id="contrastSlider" type="range" min="-100" max="100" value="0">
-                </div>
-            </div>
+            </div>            
         </div>
         <div class="ui divider"></div>
         <div class="ui two column grid">
             <div class="column">
                 <h4 class="ui header">Imagen Original</h4>
                 <canvas id="originalCanvas"></canvas>
+            </div>
+            <div class="field">
+                <label for="contrastSlider">Contraste: <span id="contrastValue" class="ui label">0</span></label>
+                <div class="range-wrapper">
+                    <input id="contrastSlider" type="range" min="-100" max="100" value="0">
+                </div>
             </div>
             <div class="column">
                 <h4 class="ui header">Contraste Aplicado</h4>
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     };
                     img.src = e.target.result;
 
-                    outputField.value = "Procesando imagen cargada...";
+                    outputField.value = "Para ver el resultado, ajuste el contraste y presione Enviar";
                     fileInput.value = '';
                 };
                 reader.readAsDataURL(file);
