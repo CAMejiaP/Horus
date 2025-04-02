@@ -282,6 +282,20 @@ function inicializarContraste() {
 
             const result = await response.json();
             outputField.value = result.text || "No se pudo extraer texto.";
+
+            // Mostrar la imagen procesada en #Id_fileDisplay
+            const displayDiv = document.getElementById('Id_fileDisplay');
+            if (displayDiv && result.image) {
+                displayDiv.innerHTML = ''; // Limpiar antes
+                const resultImg = new Image();
+                resultImg.src = result.image;
+                resultImg.alt = "Resultado procesado";
+                resultImg.style.maxWidth = "100%";
+                resultImg.style.marginTop = "1rem";
+                displayDiv.appendChild(resultImg);
+            }
+
+
         } catch (error) {
             outputField.value = "Error al enviar imágenes al servidor.";
             console.error(error);
