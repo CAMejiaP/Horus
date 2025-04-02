@@ -645,3 +645,51 @@ canvas {
 .range-wrapper input[type=range] {
     flex: 1;
 }
+
+.LogoHeaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    position: relative;
+}
+
+.LogoHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.LogoAboutContainer {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.about-button {
+    background-color: var(--terciario);
+    color: white;
+    font-size: 1.6rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-button:hover {
+    background-color: var(--secundario);
+    transform: scale(1.05);
+    color: white;
+}
+
+.info-icon {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}

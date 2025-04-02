@@ -37,14 +37,6 @@ def index():
 def acerca():
     return render_template('acerca.html')
 
-@app.route('/testimonios')
-def testimonios():
-    return render_template('Testimonios.html')
-
-@app.route('/traductor')
-def traductor():
-    return render_template('Traductor.html')
-
 # 🔹 Procesamiento OCR usando LLMWhisperer
 @app.route('/upload', methods=['POST'])
 def upload_image():

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/Sindex.css') }}">
+    <title>Acerca de HORUS</title>
+</head>
+
+<body>
+    <header class="equipo-header">
+        <div class="LogoAboutContainer">
+            <a href="/" class="about-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
+                </svg>
+
+                Traductor
+            </a>
+        </div>
+        <h1>Nuestro equipo</h1>
+    </header>
+
+
+    <section class="team-container">
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='team/sebastian.jpg') }}" alt="Sebastián Castañeda">
+            <h3>Sebastián Castañeda</h3>
+            <p>Desarrollador</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/sebastian" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                    <path d="M8 11l0 5"></path>
+                    <path d="M8 8l0 .01"></path>
+                    <path d="M12 16l0 -5"></path>
+                    <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
+
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='team/jose.jpg') }}" alt="José Mendizabal">
+            <h3>José Mendizabal</h3>
+            <p>Product Owner</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/jose" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                    <path d="M8 11l0 5"></path>
+                    <path d="M8 8l0 .01"></path>
+                    <path d="M12 16l0 -5"></path>
+                    <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
+
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='team/cesar.jpg') }}" alt="Cesar Mejía">
+            <h3>Cesar Mejía</h3>
+            <p>Desarrollador</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/cesar" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                    <path d="M8 11l0 5"></path>
+                    <path d="M8 8l0 .01"></path>
+                    <path d="M12 16l0 -5"></path>
+                    <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
+
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='team/mario.jpg') }}" alt="Mario Izaguirre">
+            <h3>Mario Izaguirre</h3>
+            <p>SCRUM Master</p>
+            <a class="linkedin-link" href="https://www.linkedin.com/in/mario" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+                    <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                    <path d="M8 11l0 5"></path>
+                    <path d="M8 8l0 .01"></path>
+                    <path d="M12 16l0 -5"></path>
+                    <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
+    </section>
+</body>
+
+</html>

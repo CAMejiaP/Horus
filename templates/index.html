@@ -21,10 +21,28 @@
 
 <body>
     <div class="container">
-        <div class="LogoHeader">
-            <img class="horuslogo" src="{{ url_for('static', filename='icons/HORUSLogo.png') }}">
-            <b class="horusText">HORUS</b>
+        <div class="LogoHeaderWrapper">
+            <!-- Logo centrado -->
+            <div class="LogoHeader">
+                <img class="horuslogo" src="{{ url_for('static', filename='icons/HORUSLogo.png') }}">
+                <b class="horusText">HORUS</b>
+            </div>
+        
+            <!-- Botón About alineado a la derecha -->
+            <div class="LogoAboutContainer">
+                <a href="/acerca" class="about-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="info-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                    </svg>
+                    Nosotros
+                </a>
+            </div>
         </div>
+        
+
+
 
         <!--seccion de cambio de lenguaje-->
         <div class="bigbuttonRow2">
@@ -160,7 +178,7 @@
         </div>
 
         <div class="fileDisplay" id="Id_fileDisplay">
-        
+
         </div>
     </div>
 
