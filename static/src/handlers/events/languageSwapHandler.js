@@ -27,7 +27,6 @@ export function initializeLanguageSwapHandler() {
      * @type {HTMLElement}
      */
     const inputLanguage = document.getElementById('inputLanguage');
-
     /**
      * Sección del teclado virtual Braille.
      * @type {HTMLElement}
@@ -45,6 +44,7 @@ export function initializeLanguageSwapHandler() {
             virtualKeyboardSection.style.display = 'block';
             microphoneIcon.disabled = true; // Deshabilita el ícono del micrófono si es Braille
             microphoneIcon.classList.add('disabled-icon'); // Opcional: añade una clase para estilo visual
+
      
         } else {
             virtualKeyboardSection.style.display = 'none';

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contraste agresivo para Braille</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <style>
+    body {
+      background-color: #f9f9f9;
+      padding: 2em;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 1em;
+      max-width: 100%;
+      background: white;
+    }
+    .range-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      margin-top: 1em;
+    }
+    .range-wrapper input[type=range] {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container ui raised very padded segment">
+    <h2 class="ui header">Contraste agresivo para Braille</h2>
+
+    <div class="ui form">
+      <div class="field">
+        <label for="uploadImage">Subir imagen</label>
+        <input type="file" id="uploadImage" accept="image/*">
+      </div>
+
+      <div class="field">
+        <label for="contrastSlider">Contraste: <span id="contrastValue" class="ui label">0</span></label>
+        <div class="range-wrapper">
+          <input id="contrastSlider" type="range" min="-100" max="100" value="0">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui two column grid">
+      <div class="column">
+        <h4 class="ui header">Imagen Original</h4>
+        <canvas id="originalCanvas"></canvas>
+      </div>
+      <div class="column">
+        <h4 class="ui header">Contraste Aplicado</h4>
+        <canvas id="contrastCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const upload = document.getElementById("uploadImage");
+    const contrastSlider = document.getElementById("contrastSlider");
+    const contrastValue = document.getElementById("contrastValue");
+    const originalCanvas = document.getElementById("originalCanvas");
+    const contrastCanvas = document.getElementById("contrastCanvas");
+
+    let originalImageData = null;
+
+    upload.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          originalCanvas.width = img.width;
+          originalCanvas.height = img.height;
+          contrastCanvas.width = img.width;
+          contrastCanvas.height = img.height;
+
+          const ctx = originalCanvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          originalImageData = ctx.getImageData(0, 0, img.width, img.height);
+          applyContrast();
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    contrastSlider.addEventListener("input", () => {
+      contrastValue.textContent = contrastSlider.value;
+      applyContrast();
+    });
+
+    function applyContrast() {
+      if (!originalImageData) return;
+
+      const contrast = parseInt(contrastSlider.value);
+      const brightness = 70; // extra para aclarar el fondo
+      const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
+
+      const ctx = contrastCanvas.getContext("2d");
+      const data = new Uint8ClampedArray(originalImageData.data);
+
+      for (let i = 0; i < data.length; i += 4) {
+        data[i]     = truncate(factor * (data[i] - 128) + 128 + brightness); // R
+        data[i + 1] = truncate(factor * (data[i + 1] - 128) + 128 + brightness); // G
+        data[i + 2] = truncate(factor * (data[i + 2] - 128) + 128 + brightness); // B
+      }
+
+      const imageData = new ImageData(data, originalImageData.width, originalImageData.height);
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    function truncate(value) {
+      return Math.max(0, Math.min(255, value));
+    }
+  </script>
+</body>
+</html>

@@ -579,7 +579,8 @@ body {
 /* Desktop (por defecto) */
 .bigbuttonRow2 {
     display: flex;
-    justify-content: space-between; /* Cambiado de space-evenly a space-between */
+    justify-content: space-between;
+    /* Cambiado de space-evenly a space-between */
     align-items: center;
     background-color: var(--verde_mierda);
     padding: 1rem;
@@ -587,18 +588,20 @@ body {
     flex-wrap: wrap;
 }
 
-.bigbuttonRow3{
+.bigbuttonRow3 {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-evenly;
     padding: 1rem;
     margin-bottom: 1rem;
 }
+
 .lang-switch {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 0 auto; /* Centra el selector de idioma */
+    margin: 0 auto;
+    /* Centra el selector de idioma */
 }
 
 .icon-group {
@@ -607,13 +610,38 @@ body {
 }
 
 .left-group {
-    justify-content: space-evenly; /* Alinea los iconos a la izquierda */
+    justify-content: space-evenly;
+    /* Alinea los iconos a la izquierda */
 }
 
 .right-group {
-    justify-content: space-evenly; /* Alinea los iconos a la derecha */
+    justify-content: space-evenly;
+    /* Alinea los iconos a la derecha */
 }
 
-.seleccion{
+.seleccion {
     cursor: pointer;
+}
+
+.contenedor_contraste {
+    max-width: 800px;
+    margin: auto;
+}
+
+canvas {
+    border: 1px solid #ccc;
+    margin-top: 1em;
+    max-width: 100%;
+    background: white;
+}
+
+.range-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.range-wrapper input[type=range] {
+    flex: 1;
 }

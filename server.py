@@ -126,5 +126,15 @@ def download_pdf():
         mimetype='application/pdf'
     )
 
+@app.route('/getbraille', methods=['POST'])
+def getbrailletext():
+    data = request.get_json()
+    base64_original = data.get('image')
+    base64_contrast = data.get('contrast_image')
+
+    # Por ahora, devolvemos texto simulado
+    return jsonify({"text": "hola como estan"})
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

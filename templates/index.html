@@ -14,6 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </head>
 
 <body>
@@ -23,6 +26,7 @@
             <b class="horusText">HORUS</b>
         </div>
 
+        <!--seccion de cambio de lenguaje-->
         <div class="bigbuttonRow2">
             <!--SECCION DE CAMBIO DE LENGUAJE-->
             <div class="lang-switch">
@@ -43,13 +47,14 @@
             </div>
         </div>
 
+        <!--CONTENEDORES DE TEXTO-->
         <div class="fieldContainer">
             <textarea class="textfield left-div" id="inputText"></textarea>
             <textarea class="textfield" id="outputText" readonly></textarea>
         </div>
 
-         <!--SUBMENO CON CONTROLES VARIOS-->
-         <div class="bigbuttonRow3 controls">
+        <!--SUBMENO CON CONTROLES VARIOS-->
+        <div class="bigbuttonRow3 controls">
             <!-- Iconos izquierda -->
             <div class="icon-group left-group">
                 <!--ICONO VOLUMENFROM-->
@@ -132,7 +137,7 @@
 
         </div>
 
-
+        <!--SECCION DE TRADUCCION-->
         <div class="buttonRow">
             <button class="button" id="translate">Traducir</button>
             <button class="button" id="clear">Borrar</button>
@@ -152,22 +157,10 @@
                     <path d="M9.5 13.5l2.5 -2.5l2.5 2.5"></path>
                 </svg>
             </div>
-
-            <div class="iconos">
-                <input type="button" style="display: none;">
-                <svg xmlns="http://www.w3.org/2000/svg" id="camera" class="icono-pdf" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="60" height="60"
-                    stroke-width="2">
-                    <path
-                        d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2">
-                    </path>
-                    <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                </svg>
-            </div>
         </div>
 
         <div class="fileDisplay" id="Id_fileDisplay">
-            <video id="cameraView" autoplay playsinline></video>
+        
         </div>
     </div>
 
